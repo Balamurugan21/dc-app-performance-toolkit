@@ -20,7 +20,7 @@ def app_specific_action(webdriver, datasets):
     #
     @print_timing("selenium_app_specific_user_login")
     def measure():
-        def app_specific_user_login(username='jiradctest', password='welcome'):
+        def app_specific_user_login(username='jiraDataCenter', password='Welcome@123'):
             login_page = Login(webdriver)
             login_page.delete_all_cookies()
             login_page.go_to()
@@ -30,7 +30,7 @@ def app_specific_action(webdriver, datasets):
             if login_page.is_first_login_second_page():
                 login_page.first_login_second_page_setup()
             login_page.wait_for_page_loaded()
-        app_specific_user_login(username='jiradctest', password='welcome')
+        app_specific_user_login(username='jiraDataCenter', password='Welcome@123')
     measure()
 
     @print_timing("selenium_app_custom_action")
