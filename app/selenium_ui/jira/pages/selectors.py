@@ -122,6 +122,12 @@ class IssueLocators:
     edit_comment_add_comment_button = (By.ID, "comment-add-submit")
     edit_comment_text_field_RTE = (By.XPATH, "//div[textarea[@id='comment']]//iframe")
     edit_comment_text_field = (By.XPATH, "//textarea[@id='comment']")
+    
+    #custom profit plugin
+    click_to_view_okrs = (By.CSS_SELECTOR, "#loadobjectives")
+    click_add_as_Key_Result = (By.CSS_SELECTOR,"div[id^='addAsKR'] > a")
+    click_Select_button = (By.XPATH, "//*[@id='okr-list']/div[1]/div[2]/ul/li[1]/div/a")
+    add_epic_details = (By.CSS_SELECTOR, "#preventDuplicate > a")
 
 
 class ProjectLocators:

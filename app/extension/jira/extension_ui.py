@@ -6,6 +6,7 @@ from selenium_ui.base_page import BasePage
 from selenium_ui.conftest import print_timing
 from selenium_ui.jira.pages.pages import Login
 from util.conf import JIRA_SETTINGS
+from selenium_ui.jira.pages.selectors import IssueLocators
 
 
 def app_specific_action(webdriver, datasets):
@@ -13,6 +14,10 @@ def app_specific_action(webdriver, datasets):
     if datasets['custom_issues']:
         issue_key = datasets['custom_issue_key']
 
+    # To run action as specific user uncomment code bellow.
+    # NOTE: If app_specific_action is running as specific user, make sure that app_specific_action is running
+    # just before test_2_selenium_z_log_out action
+    #
     # To run action as specific user uncomment code bellow.
     # NOTE: If app_specific_action is running as specific user, make sure that app_specific_action is running
     # just before test_2_selenium_z_log_out action
@@ -38,7 +43,12 @@ def app_specific_action(webdriver, datasets):
         def sub_measure():
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/browse/{issue_key}")
             page.wait_until_visible((By.ID, "summary-val"))  # Wait for summary field visible
-            page.wait_until_visible((By.ID, "ID_OF_YOUR_APP_SPECIFIC_UI_ELEMENT"))  # Wait for you app-specific UI element by ID selector
+            #Here Profit application test script starts
+            page.wait_until_visible((By.CSS_SELECTOR,"#profit-okr-label"))
+            page.wait_until_visible((By.ID, "loadobjectives"))  # Wait for you app-specific UI element by ID selector
+            page.wait_until_clickable(IssueLocators.click_to_view_okrs).click()       
+            page.wait_until_visible((By.CSS_SELECTOR, ".tithdr"))    # okr list display
         sub_measure()
     measure()
+
 
